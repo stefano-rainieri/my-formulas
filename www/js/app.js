@@ -19,7 +19,7 @@ angular.module('my-formulas', ['ionic'])
 
             /**
              * @description Save all formulas
-             * @param formulas
+             * @param {*} formulas
              */
             save: function (formulas) {
                 window.localStorage['formulas'] = angular.toJson(formulas);
@@ -27,11 +27,12 @@ angular.module('my-formulas', ['ionic'])
 
             /**
              * @description Create formula object
-             * @param title
-             * @return {{title: *, elements: Array}}
+             * @param {string} title
+             * @return {{id: *, title: string, elements: Array}}
              */
             create: function (title) {
                 return {
+                    id: new Date().valueOf(),
                     title: title,
                     elements: []
                 }
@@ -47,7 +48,7 @@ angular.module('my-formulas', ['ionic'])
 
             /**
              * @description Set the index of last active formula object
-             * @param index
+             * @param {int} index
              */
             setLastActiveIndex: function (index) {
                 window.localStorage['lastActiveFormula'] = index;
@@ -60,7 +61,7 @@ angular.module('my-formulas', ['ionic'])
     .controller('ElementsCtrl', function ($scope, $timeout, $ionicModal, Formulas, $ionicSideMenuDelegate) {
 
         /**
-         * @param title
+         * @param {string} title
          * @private
          */
         var _createFormula = function (title) {
@@ -70,6 +71,11 @@ angular.module('my-formulas', ['ionic'])
             Formulas.save($scope.formulas);
             $scope.selectFormula(formula, $scope.formulas.length - 1);
         };
+
+        /**
+         * @description Initialize toggle formula deletion
+         */
+        $scope.shouldShowDelete = false;
 
         /**
          * @description Load / initialize formulas
@@ -93,9 +99,27 @@ angular.module('my-formulas', ['ionic'])
         };
 
         /**
+         * @description Delete the selected formula
+         * @param {{id: int, title: string, elements: Array}} formula
+         */
+        $scope.deleteFormula = function (formula) {
+            var wereActive = formula === $scope.activeFormula;
+
+            $scope.formulas.splice($scope.formulas.indexOf(formula), 1);
+            Formulas.save($scope.formulas);
+
+            if (wereActive) {
+                $scope.activeFormula = $scope.formulas[0];
+                Formulas.setLastActiveIndex(0);
+            }
+
+            
+        };
+
+        /**
          * @description Choose a formula and close left menu
-         * @param formula
-         * @param index
+         * @param {{id: int, title: string, elements: Array}} formula
+         * @param {int} index
          */
         $scope.selectFormula = function (formula, index) {
             $scope.activeFormula = formula;
@@ -137,6 +161,10 @@ angular.module('my-formulas', ['ionic'])
             element.qty = null;
         };
 
+        /**
+         * @description Delete an item of the active formula
+         * @param {Number} id
+         */
         $scope.deleteElement = function (id) {
             if (!$scope.activeFormula) {
                 return;

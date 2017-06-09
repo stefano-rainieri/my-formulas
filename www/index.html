@@ -47,7 +47,7 @@
         </ion-header-bar>
 
         <ion-content class="light-bg">
-            <ion-list can-swipe="true">
+            <ion-list ng-if="0 < activeFormula.elements.length" can-swipe="true">
                 <ion-item ng-repeat="element in activeFormula.elements | orderBy:'-name':true">
                     <i class="icon ion-beaker {{element.color}}"></i>
                     &nbsp; {{element.name}}
@@ -55,6 +55,14 @@
                     <ion-option-button class="ion-trash-a button-assertive" ng-click="deleteElement(element.id)"></ion-option-button>
                 </ion-item>
             </ion-list>
+
+            <div ng-if="0 >= activeFormula.elements.length" ng-click="newElement()" class="padding">
+                <div class="padding text-center" style="margin-top: 20%;">
+                    <h6>Empty formula.</h6>
+                    <img src="img/ionic.png">
+                    <h6>Start to mix<br/>adding elements!</h6>
+                </div>
+            </div>
         </ion-content>
     </ion-side-menu-content>
     <!-- END Formula details -->
@@ -62,6 +70,9 @@
     <!-- Left menu -->
     <ion-side-menu side="left">
         <ion-header-bar class="bar-positive">
+            <button class="button button-clear button-light" ng-click="shouldShowDelete = !shouldShowDelete">
+                <i class="icon ion-minus-round"></i>
+            </button>
             <h1 class="title">FORMULAS</h1>
             <button class="button button-clear button-light" ng-click="newFormula()">
                 <i class="icon ion-plus"></i>
@@ -69,10 +80,11 @@
         </ion-header-bar>
 
         <ion-content class="light-bg" scroll="false">
-            <ion-list>
+            <ion-list show-delete="shouldShowDelete">
                 <ion-item ng-repeat="formula in formulas | orderBy:'-title':true" ng-click="selectFormula(formula, $index)"
                           ng-class="{active: activeFormula == formula}">
                     {{formula.title}}
+                    <ion-delete-button class="ion-minus-circled" ng-click="deleteFormula(formula)"></ion-delete-button>
                 </ion-item>
             </ion-list>
         </ion-content>
