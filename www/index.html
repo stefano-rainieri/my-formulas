@@ -48,7 +48,7 @@
 
         <ion-content class="light-bg">
             <ion-list can-swipe="true">
-                <ion-item ng-repeat="element in activeFormula.elements">
+                <ion-item ng-repeat="element in activeFormula.elements | orderBy:'-name':true">
                     <i class="icon ion-beaker {{element.color}}"></i>
                     &nbsp; {{element.name}}
                     <span class="badge badge-dark">{{element.qty}}</span>
@@ -70,7 +70,7 @@
 
         <ion-content class="light-bg" scroll="false">
             <ion-list>
-                <ion-item ng-repeat="formula in formulas" ng-click="selectFormula(formula, $index)"
+                <ion-item ng-repeat="formula in formulas | orderBy:'-title':true" ng-click="selectFormula(formula, $index)"
                           ng-class="{active: activeFormula == formula}">
                     {{formula.title}}
                 </ion-item>

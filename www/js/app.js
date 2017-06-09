@@ -85,7 +85,6 @@ angular.module('my-formulas', ['ionic'])
          * @description Create a formula
          */
         $scope.newFormula = function () {
-            console.log('annannata');
             var title = prompt('Your brand new secret formula is: ');
 
             if (title) {
@@ -116,7 +115,7 @@ angular.module('my-formulas', ['ionic'])
 
         /**
          * @description Submit form
-         * @param element
+         * @param {{name: string, color: string, qty: int}} element
          */
         $scope.addElement = function (element) {
             if (!$scope.activeFormula || !element) {
