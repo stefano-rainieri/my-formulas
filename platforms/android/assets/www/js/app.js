@@ -113,7 +113,7 @@ angular.module('my-formulas', ['ionic'])
                 Formulas.setLastActiveIndex(0);
             }
 
-
+            
         };
 
         /**

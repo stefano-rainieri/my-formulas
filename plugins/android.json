@@ -7,6 +7,9 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.sterainieri.myformulas"
+        },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.sterainieri.myformulas"
         },
@@ -20,9 +23,6 @@
             "PACKAGE_NAME": "com.sterainieri.myformulas"
         },
         "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.sterainieri.myformulas"
-        },
-        "cordova-plugin-console": {
             "PACKAGE_NAME": "com.sterainieri.myformulas"
         }
     },
