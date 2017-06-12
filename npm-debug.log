@@ -1,0 +1,51 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'ionic',
+1 verbose cli   '--',
+1 verbose cli   'serve',
+1 verbose cli   '--lab' ]
+2 info using npm@3.10.10
+3 info using node@v6.10.3
+4 verbose run-script [ 'preionic', 'ionic', 'postionic' ]
+5 info lifecycle my-formulas@0.0.1~preionic: my-formulas@0.0.1
+6 silly lifecycle my-formulas@0.0.1~preionic: no script for preionic, continuing
+7 info lifecycle my-formulas@0.0.1~ionic: my-formulas@0.0.1
+8 verbose lifecycle my-formulas@0.0.1~ionic: unsafe-perm in lifecycle true
+9 verbose lifecycle my-formulas@0.0.1~ionic: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/Stefano/project/fazland/my-formulas/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+10 verbose lifecycle my-formulas@0.0.1~ionic: CWD: /Users/Stefano/project/fazland/my-formulas
+11 silly lifecycle my-formulas@0.0.1~ionic: Args: [ '-c', 'ionic "serve" "--lab"' ]
+12 silly lifecycle my-formulas@0.0.1~ionic: Returned: code: 1  signal: null
+13 info lifecycle my-formulas@0.0.1~ionic: Failed to exec ionic script
+14 verbose stack Error: my-formulas@0.0.1 ionic: `ionic "serve" "--lab"`
+14 verbose stack Exit status 1
+14 verbose stack     at EventEmitter.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/lifecycle.js:255:16)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at EventEmitter.emit (events.js:191:7)
+14 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/spawn.js:40:14)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at ChildProcess.emit (events.js:191:7)
+14 verbose stack     at maybeClose (internal/child_process.js:886:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
+15 verbose pkgid my-formulas@0.0.1
+16 verbose cwd /Users/Stefano/project/fazland/my-formulas
+17 error Darwin 16.6.0
+18 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "run" "ionic" "--" "serve" "--lab"
+19 error node v6.10.3
+20 error npm  v3.10.10
+21 error code ELIFECYCLE
+22 error my-formulas@0.0.1 ionic: `ionic "serve" "--lab"`
+22 error Exit status 1
+23 error Failed at the my-formulas@0.0.1 ionic script 'ionic "serve" "--lab"'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the my-formulas package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     ionic "serve" "--lab"
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs my-formulas
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls my-formulas
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]

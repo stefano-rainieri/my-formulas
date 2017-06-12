@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
@@ -18,28 +18,131 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
-    -->
 
-    <!-- ionic/angularjs js -->
+    <!-- JS dependencies -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/lodash/dist/lodash.min.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
-  </head>
-  <body ng-app="starter" class="platform-android platform-cordova platform-webview">
+</head>
 
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
-      </ion-header-bar>
-      <ion-content>
-      </ion-content>
-    </ion-pane>
-  </body>
+<body ng-app="my-formulas" ng-controller="ElementsCtrl" class="platform-android platform-cordova platform-webview">
+<ion-side-menus>
+
+    <!-- Formula details -->
+    <ion-side-menu-content>
+        <ion-header-bar class="bar-positive">
+            <button class="button button-clear button-light" ng-click="toggleFormulas()">
+                <i class="icon ion-navicon"></i>
+            </button>
+            <h1 class="title">{{activeFormula.title}}</h1>
+            <button class="button button-clear button-light" ng-click="newElement()">
+                <i class="icon ion-plus"></i>
+            </button>
+        </ion-header-bar>
+
+        <ion-content class="light-bg">
+            <ion-list ng-if="0 < activeFormula.elements.length" can-swipe="true">
+                <ion-item ng-repeat="element in activeFormula.elements | orderBy:'-name':true">
+                    <i class="icon ion-beaker {{element.color}}"></i>
+                    &nbsp; {{element.name}}
+                    <span class="badge badge-dark">{{element.qty}}</span>
+                    <ion-option-button class="ion-trash-a button-assertive" ng-click="deleteElement(element.id)"></ion-option-button>
+                </ion-item>
+            </ion-list>
+
+            <div ng-if="0 >= activeFormula.elements.length" ng-click="newElement()" class="padding">
+                <div class="padding text-center" style="margin-top: 20%;">
+                    <h6>Empty formula.</h6>
+                    <img src="img/ionic.png">
+                    <h6>Start to mix<br/>adding elements!</h6>
+                </div>
+            </div>
+        </ion-content>
+    </ion-side-menu-content>
+    <!-- END Formula details -->
+
+    <!-- Left menu -->
+    <ion-side-menu side="left">
+        <ion-header-bar class="bar-positive">
+            <button class="button button-clear button-light" ng-click="shouldShowDelete = !shouldShowDelete">
+                <i class="icon ion-minus-round"></i>
+            </button>
+            <h1 class="title">FORMULAS</h1>
+            <button class="button button-clear button-light" ng-click="newFormula()">
+                <i class="icon ion-plus"></i>
+            </button>
+        </ion-header-bar>
+
+        <ion-content class="light-bg" scroll="false">
+            <ion-list show-delete="shouldShowDelete">
+                <ion-item ng-repeat="formula in formulas | orderBy:'-title':true" ng-click="selectFormula(formula, $index)"
+                          ng-class="{active: activeFormula == formula}">
+                    {{formula.title}}
+                    <ion-delete-button class="ion-minus-circled" ng-click="deleteFormula(formula)"></ion-delete-button>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+    <!-- END Left menu -->
+
+    <!-- Modal element-->
+    <script id="new-element.html" type="text/ng-template">
+        <div class="modal">
+
+            <ion-header-bar class="bar-positive">
+                <h1 class="title">Add Element</h1>
+                <button class="button button-clear button-light" ng-click="closeNewElement()">
+                    <i class="icon ion-close"></i>
+                </button>
+            </ion-header-bar>
+
+            <ion-content class="light-bg">
+                <form ng-submit="addElement(element)">
+                    <div class="list">
+                        <label class="item item-input item-floating-label">
+                            <span class="input-label positive">Name</span>
+                            <input type="text" placeholder="Name" ng-model="element.name"
+                                   ng-required="true"/>
+                        </label>
+                        <label class="item item-input item-floating-label">
+                            <span class="input-label positive">Atom quantity</span>
+                            <input type="number" placeholder="Atom quantity"
+                                   ng-model="element.qty" ng-required="true"/>
+                        </label>
+                        <label class="item item-input item-select">
+                            <span class="input-label positive">Color</span>
+                            <select ng-model="element.color">
+                                <option value="stable" selected>grey</option>
+                                <option value="positive">blue</option>
+                                <option value="calm">light-blue</option>
+                                <option value="balanced">green</option>
+                                <option value="energized">yellow</option>
+                                <option value="assertive">red</option>
+                                <option value="royal">purple</option>
+                                <option value="dark">black</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <div class="padding">
+                        <button type="submit" class="button button-block button-positive">Save
+                            {{element.name}}
+                        </button>
+                    </div>
+                </form>
+
+            </ion-content>
+
+        </div>
+    </script>
+    <!-- END Modal element -->
+
+</ion-side-menus>
+</body>
 </html>

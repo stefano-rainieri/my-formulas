@@ -7,23 +7,23 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.ionicframework.helloionic695363"
-        },
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.ionicframework.helloionic695363"
+            "PACKAGE_NAME": "com.sterainieri.myformulas"
         },
         "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.ionicframework.helloionic695363"
+            "PACKAGE_NAME": "com.sterainieri.myformulas"
         },
         "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.ionicframework.helloionic695363"
+            "PACKAGE_NAME": "com.sterainieri.myformulas"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.ionicframework.helloionic695363"
+            "PACKAGE_NAME": "com.sterainieri.myformulas"
         },
         "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.ionicframework.helloionic695363"
+            "PACKAGE_NAME": "com.sterainieri.myformulas"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.sterainieri.myformulas"
         }
     },
     "dependent_plugins": {}
