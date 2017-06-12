@@ -1,0 +1,16 @@
+{
+  "ios": {
+    "debug": {
+      "codeSignIdentity": "iPhone Developer: Alessandro Iotti (DQHF2M35RP)",
+      "developmentTeam": "5C8P6D29VZ",
+      "provisioningProfile": "d549e692-f09e-4e56-a7ff-0ec6eda6add0",
+      "packageType": "development"
+    },
+    "release": {
+      "codeSignIdentity": "***",
+      "developmentTeam": "***",
+      "provisioningProfile": "***",
+      "packageType": "app-store"
+    }
+  }
+}
